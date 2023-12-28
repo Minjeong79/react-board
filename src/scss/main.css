@@ -1,0 +1,394 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  color: #222;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #222;
+}
+
+img {
+  width: 100%;
+}
+
+.container {
+  width: 700px;
+  margin: auto;
+}
+
+.board_map {
+  width: 700px;
+  margin: auto;
+}
+
+input[type=submit] {
+  font-size: 15px;
+  color: #fff;
+  border: none;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: #088a68;
+}
+
+input[type=button] {
+  font-size: 15px;
+  color: #fff;
+  border: none;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: #6e6e6e;
+}
+
+input[type=text] {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #999;
+}
+input[type=text]:focus {
+  outline: none;
+}
+
+input[type=password] {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #999;
+}
+input[type=password]:focus {
+  outline: none;
+}
+
+button[type=submit] {
+  font-size: 15px;
+  color: #fff;
+  border: none;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+  background: #088a68;
+}
+
+.container form .input_box input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  border: 1px solid #999;
+  padding-left: 10px;
+}
+.container form .textarea_box {
+  margin-top: 10px;
+  border: 1px solid #999;
+  height: 300px;
+  overflow-y: scroll;
+  position: relative;
+}
+.container form .textarea_box textarea {
+  overflow-y: hidden;
+  height: 290px;
+  border: none;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 0px 0px 10px;
+  resize: none;
+  line-height: 26px;
+}
+.container form .textarea_box textarea:focus {
+  outline: none;
+}
+.container form .img_box {
+  padding: 10px;
+}
+.container form .img_box img {
+  width: 100%;
+}
+.container form .file_box {
+  padding: 10px;
+}
+.container form .form_btn_box {
+  margin-top: 80px;
+  text-align: center;
+}
+.container .board_box {
+  position: relative;
+}
+.container .board_box .board_top {
+  margin-top: 100px;
+  background: #f5f5f5;
+}
+.container .board_box .board_top ul li {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.container .board_box .board_top ul li:first-child {
+  border-top: 1px solid #999;
+}
+.container .board_box .board_body ul li {
+  padding: 10px;
+  border-bottom: 1px solid #999;
+  justify-content: space-between;
+}
+.container .board_box .board_body ul li .link_map {
+  display: flex;
+  justify-content: space-between;
+}
+.container .board_box .board_body ul li .link_map div:nth-child(2) {
+  width: 350px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+.container .page_box {
+  margin-top: 100px;
+  border-bottom: 1px solid #999;
+}
+.container .page_box section {
+  height: 350px;
+}
+.container .page_box section .title {
+  border-bottom: 1px solid #999;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+.container .page_box section .userInfo {
+  padding: 0px 10px;
+  font-size: 14px;
+}
+.container .page_box section .userInfo span {
+  margin-right: 20px;
+}
+.container .page_box section .page_txt {
+  margin-top: 10px;
+  line-height: 26px;
+  padding: 10px;
+  height: 250px;
+  overflow-y: auto;
+}
+.container .page_btn {
+  margin-top: 60px;
+}
+.container .page_btn div {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.container .page_btn div .edit_btn {
+  font-size: 15px;
+  color: #fff;
+  border: none;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: #088a68;
+  line-height: 34px;
+}
+.container .page_btn div .edit_btn a {
+  color: #fff;
+}
+.container .page_btn div input[type=button] {
+  font-size: 15px;
+  color: #fff;
+  border: none;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: #6e6e6e;
+  margin-left: 10px;
+}
+.container .likeBtnBox {
+  display: flex;
+}
+.container .likeBtnBox .likeBtn {
+  background: none;
+  border: none;
+}
+.container .likeBtnBox .likeBtn .MuiSvgIcon-root {
+  border: none;
+  color: #088a68;
+}
+.container .board_back_btn {
+  font-size: 15px;
+  color: #fff;
+  border: none;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 20px;
+  line-height: 34px;
+  background: #fff;
+  border: 1px solid #999;
+}
+.container .board_back_btn a {
+  color: #222;
+}
+
+.comment_box {
+  margin-top: 100px;
+  position: relative;
+  margin-bottom: 100px;
+}
+.comment_box form {
+  margin-bottom: 100px;
+}
+.comment_box form textarea {
+  width: 100%;
+  height: 100px;
+  resize: none;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.comment_box form input[type=submit] {
+  font-size: 15px;
+  color: #fff;
+  border: none;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: #088a68;
+}
+.comment_box .comment_view {
+  margin-bottom: 30px;
+}
+.comment_box .comment_view .comment_user {
+  padding-bottom: 10px;
+}
+.comment_box .comment_view .comment_user ul li + li {
+  margin-top: 10px;
+}
+.comment_box .comment_view .comment_reply {
+  margin-top: 15px;
+  padding-left: 20px;
+  background: #f5f5f5;
+}
+.comment_box .comment_view .comment_txt {
+  border-bottom: 1px solid #999;
+  padding: 10px;
+}
+.comment_box .comment_view .comment_txt .comment_btn {
+  display: flex;
+  justify-content: right;
+  gap: 10px;
+}
+.comment_box .comment_view .comment_txt .comment_btn .edit_btn {
+  font-size: 15px;
+  color: #fff;
+  border: none;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: #088a68;
+  line-height: 34px;
+}
+.comment_box .comment_view .comment_txt .comment_btn .edit_btn a {
+  color: #fff;
+}
+.comment_box .center_mt {
+  text-align: center;
+  margin-top: 30px;
+}
+.comment_box .center_mt input[type=submit] {
+  margin-right: 10px;
+}
+
+.board_map {
+  margin-top: 50px;
+  position: relative;
+}
+.board_map .userText {
+  text-align: right;
+}
+.board_map .userText a:first-child {
+  margin-right: 10px;
+}
+.board_map .write_btn {
+  font-size: 15px;
+  color: #fff;
+  border: none;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: #088a68;
+  line-height: 36px;
+  margin-top: 20px;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+.board_map .write_btn a {
+  color: #fff;
+}
+.board_map .write_btn2 {
+  font-size: 15px;
+  color: #fff;
+  border: none;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: #555;
+  line-height: 36px;
+  margin-top: 20px;
+  position: absolute;
+  right: 140px;
+  bottom: 50px;
+}
+.board_map .write_btn2 a {
+  color: #fff;
+}
+
+.userBox {
+  width: 500px;
+  margin: auto;
+  position: relative;
+}
+.userBox .userBox_content {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+.userBox .userBox_content form {
+  width: 100%;
+}
+.userBox .userBox_content form div {
+  margin-top: 10px;
+}
+.userBox .userBox_content form div input[type=text] {
+  width: 99%;
+}
+.userBox .userBox_content form div input[type=password] {
+  width: 99%;
+}
+.userBox .userBox_content form div button[type=submit] {
+  margin-top: 50px;
+}/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,33 @@
+.pagenation_box {
+  position: relative;
+  .pagenation_list {
+    width: 300px;
+    margin: 80px auto 0px;
+    .pagination {
+      display: flex;
+      justify-content: space-around;
+      cursor: pointer;
+      li {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 27px;
+        &:hover {
+          width: 30px;
+          height: 30px;
+          text-align: center;
+          color: #fff;
+          border-radius: 100px;
+          line-height: 27px;
+          background: #088a68;
+        }
+        &:first-child {
+          width: 50px;
+        }
+        &:last-child {
+          width: 50px;
+        }
+      }
+    }
+  }
+}

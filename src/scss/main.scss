@@ -1,0 +1,372 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  color: #222;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+a {
+  text-decoration: none;
+  color: #222;
+}
+img {
+  width: 100%;
+}
+.container {
+  width: 700px;
+  margin: auto;
+}
+.board_map {
+  width: 700px;
+  margin: auto;
+}
+
+$primary-color: #088a68;
+$cancle-btn: #6e6e6e;
+$board-btn: #fff;
+$w150: 120px;
+$h50: 40px;
+$bnone: none;
+
+// 버튼
+@mixin main-btn {
+  font: {
+    size: 15px;
+  }
+  color: #fff;
+  border: none;
+  width: $w150;
+  height: $h50;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+input[type="submit"] {
+  @include main-btn;
+  background: $primary-color;
+}
+input[type="button"] {
+  @include main-btn;
+  background: $cancle-btn;
+}
+input[type="text"] {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #999;
+  &:focus {
+    outline: none;
+  }
+}
+input[type="password"] {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #999;
+  &:focus {
+    outline: none;
+  }
+}
+button[type="submit"] {
+  @include main-btn;
+  width: 100%;
+  background: $primary-color;
+}
+.container {
+  form {
+    .input_box {
+      input {
+        box-sizing: border-box;
+        width: 100%;
+        height: 50px;
+        border: 1px solid #999;
+        padding-left: 10px;
+      }
+    }
+    .textarea_box {
+      margin-top: 10px;
+      border: 1px solid #999;
+      height: 300px;
+      overflow-y: scroll;
+      position: relative;
+      textarea {
+        overflow-y: hidden;
+        height: 290px;
+        border: none;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 10px 0px 0px 10px;
+        resize: none;
+        line-height: 26px;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+    .img_box {
+      padding: 10px;
+      img {
+        width: 100%;
+      }
+    }
+    .file_box {
+      padding: 10px;
+    }
+    .form_btn_box {
+      margin-top: 80px;
+      text-align: center;
+    }
+  }
+
+  // 게시판
+  .board_box {
+    position: relative;
+    // height: 510px;
+    .board_top {
+      margin-top: 100px;
+      background: #f5f5f5;
+      ul {
+        li {
+          &:first-child {
+            border-top: 1px solid #999;
+          }
+          padding: 10px;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+    .board_body {
+      ul {
+        li {
+          padding: 10px;
+          border-bottom: 1px solid #999;
+          justify-content: space-between;
+          .link_map {
+            display: flex;
+            justify-content: space-between;
+            div {
+              &:nth-child(2) {
+                width: 350px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //상세페이지
+  .page_box {
+    margin-top: 100px;
+    border-bottom: 1px solid #999;
+    section {
+      height: 350px;
+      .title {
+        border-bottom: 1px solid #999;
+        padding-left: 10px;
+        padding-bottom: 10px;
+      }
+      .userInfo {
+        padding: 0px 10px;
+        font: {
+          size: 14px;
+        }
+        span {
+          margin-right: 20px;
+        }
+      }
+      .page_txt {
+        margin-top: 10px;
+        line-height: 26px;
+        padding: 10px;
+        height: 250px;
+        overflow-y: auto;
+      }
+    }
+  }
+  //상세페이지 버튼
+  .page_btn {
+    margin-top: 60px;
+    div {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      .edit_btn {
+        @include main-btn;
+        background: $primary-color;
+        line-height: 34px;
+        a {
+          color: #fff;
+        }
+      }
+      input[type="button"] {
+        @include main-btn;
+        background: $cancle-btn;
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .likeBtnBox {
+    display: flex;
+    .likeBtn {
+      background: none;
+      border: none;
+      .MuiSvgIcon-root {
+        border: none;
+        color: #088a68;
+      }
+      .unSelectLike {
+      }
+    }
+  }
+
+  .board_back_btn {
+    @include main-btn;
+    margin-top: 20px;
+    line-height: 34px;
+    background: $board-btn;
+    border: 1px solid #999;
+    a {
+      color: #222;
+    }
+  }
+}
+
+//상세페이지 댓글
+.comment_box {
+  margin-top: 100px;
+  position: relative;
+  margin-bottom: 100px;
+  form {
+    margin-bottom: 100px;
+    textarea {
+      width: 100%;
+      height: 100px;
+      resize: none;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    input[type="submit"] {
+      @include main-btn;
+      background: $primary-color;
+      // position: absolute;
+      // right: 0px;
+      // bottom: -50px;
+    }
+  }
+  .comment_view {
+    margin-bottom: 30px;
+    .comment_user {
+      padding-bottom: 10px;
+
+      ul li + li {
+        margin-top: 10px;
+      }
+    }
+    .comment_reply {
+      margin-top: 15px;
+      padding-left: 20px;
+      background: #f5f5f5;
+    }
+    .comment_txt {
+      border-bottom: 1px solid #999;
+      padding: 10px;
+      .comment_btn {
+        display: flex;
+        justify-content: right;
+        gap: 10px;
+        .edit_btn {
+          @include main-btn;
+          background: $primary-color;
+          line-height: 34px;
+          a {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  .center_mt {
+    text-align: center;
+    margin-top: 30px;
+    input[type="submit"] {
+      margin-right: 10px;
+    }
+  }
+}
+
+//게시판에 글쓰기 버튼
+.board_map {
+  margin-top: 50px;
+  .userText {
+    text-align: right;
+    a:first-child {
+      margin-right: 10px;
+    }
+  }
+  position: relative;
+  .write_btn {
+    @include main-btn;
+    background: $primary-color;
+    line-height: 36px;
+    margin-top: 20px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    a {
+      color: #fff;
+    }
+  }
+
+  // 삭제예정
+  .write_btn2 {
+    @include main-btn;
+    background: #555;
+    line-height: 36px;
+    margin-top: 20px;
+    position: absolute;
+    right: 140px;
+    bottom: 50px;
+    a {
+      color: #fff;
+    }
+  }
+}
+
+// 회원가입
+.userBox {
+  width: 500px;
+  margin: auto;
+  position: relative;
+  .userBox_content {
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    height: 100vh;
+    form {
+      width: 100%;
+      div {
+        margin-top: 10px;
+        input[type="text"] {
+          width: 99%;
+        }
+        input[type="password"] {
+          width: 99%;
+        }
+        button[type="submit"] {
+          margin-top: 50px;
+        }
+      }
+    }
+  }
+}
