@@ -1,14 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { firestore } from "../../../firebase";
-import { customAlphabet } from "nanoid";
-import {
-  addDoc,
-  setDoc,
-  collection,
-  getDocs,
-  getDoc,
-  doc,
-} from "firebase/firestore";
+import { setDoc, collection, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 interface CommentType {

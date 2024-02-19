@@ -23,12 +23,7 @@ const boardPageComment = createSlice({
   initialState,
   reducers: {
     deleteCommentSlice: (state, action) => {
-      const { boardId, dataCUid, numIndex } = action.payload;
-      const comments = state.boardComment[boardId] || [];
-      const filteredComments = comments.filter(
-        (comm) => !(comm.dataCUid === dataCUid && comm.numIndex === numIndex)
-      );
-      state.boardComment[boardId] = filteredComments;
+      
     },
   },
   extraReducers: (builder) => {

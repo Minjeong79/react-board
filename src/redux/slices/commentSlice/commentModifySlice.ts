@@ -34,5 +34,5 @@ const boardPageCommentModifiy = createSlice({
       });
   },
 });
-// export const { deleteCommentSlice } = boardPageCommentModifiy.actions;
+
 export default boardPageCommentModifiy.reducer;

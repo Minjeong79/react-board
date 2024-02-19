@@ -1,12 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { firestore } from "../../../firebase";
-import { customAlphabet } from "nanoid";
 import {
-  addDoc,
   setDoc,
   collection,
   getDocs,
-  getDoc,
   doc,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
@@ -33,7 +30,6 @@ const userComment = createAsyncThunk<
 
     const state: any = thunkAPI.getState();
 
-    const userNicNameList = state.login.userLists;
     const userInformation = state.login.user;
     const userNicName = userInformation.displayName;
 
@@ -43,10 +39,9 @@ const userComment = createAsyncThunk<
     const specificDoc = await getDocs(userCollection);
 
     for (const [index, docI] of specificDoc.docs.entries()) {
-      const data = docI.data();
       const dataId = docI.id;
       const numberId = Number(dataId);
-      console.log(dataId);
+      
       //하위 도큐멘트
       const docRef = doc(userCollection, dataId);
 
