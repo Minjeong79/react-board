@@ -26,14 +26,9 @@ const addUserData = createAsyncThunk<
   const strId = DboardId.toString();
   const { title, content, index, displayName } = boarditem;
 
-  console.log(displayName);
-
   const auth = getAuth();
   const currentUser = auth.currentUser;
   const userId = currentUser?.uid;
-
-  // const userCollection = collection(firestore, "users");
-  // const userDataCollrection = collection(userCollection, "userData", boardId);
 
   const userCollection = collection(firestore, "users");
 

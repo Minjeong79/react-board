@@ -33,10 +33,6 @@ const boardItemDelelteSlice = createSlice({
       })
       .addCase(deleteuserdata.fulfilled, (state, action) => {
         console.log(` 삭제 비동기 성공`);
-
-        const { boardId } = action.payload;
-
-        delete state.boarditem[boardId];
       })
       .addCase(deleteuserdata.rejected, (state, action) => {
         console.log(`삭제 비동기 요청 실패`);

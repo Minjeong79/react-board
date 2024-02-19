@@ -15,8 +15,7 @@ const deleteuserdata = createAsyncThunk<
 >("user/fetchUserDataDeletet", async ({ boardId }, thunkAPI) => {
   const auth = getAuth();
   const currentUser = auth.currentUser;
-  const userId = currentUser?.uid;
-
+ 
   //파이어베이스 하위 컬렉션 경로
 
   const userCollection = collection(firestore, "users");

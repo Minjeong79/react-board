@@ -20,8 +20,7 @@ const modifyUserData = createAsyncThunk<
   { boardId: number; boarditem: UserData }
 >("user/fetchUserModifyDta", async (data, thunkAPI) => {
   const { boardId, boarditem } = data;
-  const DboardId = data.boardId;
-  const strId = DboardId.toString();
+ 
   const { title, content, index, displayName } = boarditem;
 
   const auth = getAuth();

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { firestore } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { creatBoard } from "../../redux/slices/boardSlice";
+// import { creatBoard } from "../../redux/slices/boardSlice";
 import { Link } from "react-router-dom";
 
 interface Boardtype {
@@ -18,9 +18,9 @@ const Board = () => {
   const dispatch = useDispatch();
   const [boardDatat, setBoardData] = useState<Boardtype[]>([]);
 
-  const handleLinkClick = () => {
-    dispatch(creatBoard(1));
-  };
+  // const handleLinkClick = () => {
+  //   dispatch(creatBoard(1));
+  // };
 
   //페이지네이션
   const [currentPage, setCurrentPage] = useState(1);
@@ -117,7 +117,7 @@ const Board = () => {
             </ul>
           </div>
           <div className="write_btn">
-            <Link to="/form" onClick={handleLinkClick}>
+            <Link to="/form">
               글쓰기
             </Link>
           </div>

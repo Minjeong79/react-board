@@ -31,8 +31,6 @@ const boardItemSlice = createSlice({
   reducers: {
     //해당 id 값의 state는 삭제
     deleteItem: (state, action) => {
-      const { boardId } = action.payload;
-      delete state.boarditem[boardId];
     },
   },
   extraReducers: (builder) => {

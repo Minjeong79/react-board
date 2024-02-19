@@ -9,14 +9,14 @@ import { getStorage } from "firebase/storage";
 import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-  measurementId: "",
-}; 
+  apiKey: "AIzaSyAV5c_HRNB9MW5ckdGVeUAwU6wuOBp-l18",
+  authDomain: "board-bff0f.firebaseapp.com",
+  projectId: "board-bff0f",
+  storageBucket: "board-bff0f.appspot.com",
+  messagingSenderId: "542556625164",
+  appId: "1:542556625164:web:cfe3de7853587ed5f3d129",
+  measurementId: "G-QQPTPMZE1Q"
+};
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
