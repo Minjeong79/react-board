@@ -219,7 +219,7 @@ const Comment = (props: CommentProps) => {
                             />
                           </>
                         ) : (
-                          <>22</>
+                          <></>
                         )}
                       </div>
                     </div>
