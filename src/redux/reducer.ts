@@ -11,7 +11,7 @@ import boardPageCommentModifiy from "./slices/commentSlice/commentModifySlice";
 import boardPageReplyComment from "./slices/ReplyComment/ReplyCommentSlice";
 
 const rootReducer = combineReducers({
-  board: boardReducer,
+  // board: boardReducer,
   boardItemMap: boardItemReducer,
   login: loginReducer,
   boardDelete: boardItemDeleteReducer,
