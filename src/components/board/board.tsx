@@ -18,10 +18,6 @@ const Board = () => {
   const dispatch = useDispatch();
   const [boardDatat, setBoardData] = useState<Boardtype[]>([]);
 
-  // const handleLinkClick = () => {
-  //   dispatch(creatBoard(1));
-  // };
-
   //페이지네이션
   const [currentPage, setCurrentPage] = useState(1);
   const handleBoardDataList = async () => {
@@ -117,9 +113,7 @@ const Board = () => {
             </ul>
           </div>
           <div className="write_btn">
-            <Link to="/form">
-              글쓰기
-            </Link>
+            <Link to="/form">글쓰기</Link>
           </div>
           <div className="pagenation_box">
             <div className="pagenation_list">
