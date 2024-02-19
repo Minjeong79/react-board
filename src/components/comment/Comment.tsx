@@ -5,7 +5,7 @@ import userComment from "../../redux/thunks/commentThunk/commentNewThunk";
 import deleteComment from "../../redux/thunks/commentThunk/commentDeleteThunk";
 import { customAlphabet } from "nanoid";
 import { collection, getDocs, doc } from "firebase/firestore";
-import { firestore } from "../../firebase";
+import { firestore, appAuth } from "../../firebase";
 
 interface CommentType {
   content: string;
@@ -29,9 +29,11 @@ interface CommentProps {
 }
 const Comment = (props: CommentProps) => {
   const userCollection = collection(firestore, "users");
-  const userUidValue = useSelector((state: any) => state.login.user);
-  const userNicName = userUidValue?.displayName;
-  const userCommentUid = userUidValue?.uid;
+
+  const auth = appAuth;
+  const currentUser = auth.currentUser;
+  const userId = currentUser?.uid;
+  const displayName = currentUser?.displayName;
 
   const boardId = props.boardId;
   const strId = boardId.toString();
@@ -59,9 +61,9 @@ const Comment = (props: CommentProps) => {
     const comment = {
       content: content,
       strIndex: strIndex,
-      dataCUid: userCommentUid,
+      dataCUid: userId as string,
       timedata: new Date(),
-      displayName: userNicName,
+      displayName: displayName as string,
       isModified: false,
     };
     await dispatch(
@@ -82,7 +84,7 @@ const Comment = (props: CommentProps) => {
       dispatch(
         deleteComment({
           boardId: boardId,
-          dataCUid: userCommentUid,
+          dataCUid: userId as string,
           strIndex: strIndexToDelete,
         }) as any
       );
@@ -141,6 +143,7 @@ const Comment = (props: CommentProps) => {
     replyData();
   }, [content, commentCount]);
 
+  console.log(commentData);
   return (
     <section className="comment_box">
       <form onSubmit={handleComment}>
@@ -199,19 +202,25 @@ const Comment = (props: CommentProps) => {
                             </div>
                           ))
                         )}
-                        <div className="edit_btn">
-                          <Link
-                            to={`/CommentModifiy/${item.strIndex}`}
-                            state={propsDb}
-                          >
-                            수정
-                          </Link>
-                        </div>
-                        <input
-                          type="button"
-                          onClick={() => handleCommentDelete(item.strIndex)}
-                          value="삭제"
-                        />
+                        {userId === item.dataCUid ? (
+                          <>
+                            <div className="edit_btn">
+                              <Link
+                                to={`/CommentModifiy/${item.strIndex}`}
+                                state={propsDb}
+                              >
+                                수정
+                              </Link>
+                            </div>
+                            <input
+                              type="button"
+                              onClick={() => handleCommentDelete(item.strIndex)}
+                              value="삭제"
+                            />
+                          </>
+                        ) : (
+                          <></>
+                        )}
                       </div>
                     </div>
                   </div>

@@ -31,12 +31,6 @@ const Page = () => {
   const currentUser = auth.currentUser;
   const userId = currentUser?.uid;
 
-  const userUidValue = useSelector((state: any) => state.login.user);
-  // const uidVar = userUidValue?.uid;
-
-  // console.log(uidVar);
-  console.log(userId);
-
   const { id } = useParams();
   const boardId = Number(id);
   const strId = boardId.toString();
