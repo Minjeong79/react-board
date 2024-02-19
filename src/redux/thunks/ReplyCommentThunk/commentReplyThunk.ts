@@ -1,14 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { firestore } from "../../../firebase";
-import { customAlphabet } from "nanoid";
-import {
-  addDoc,
-  setDoc,
-  collection,
-  getDocs,
-  getDoc,
-  doc,
-} from "firebase/firestore";
+import { setDoc, collection, getDocs, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 interface ReplyType {
@@ -29,8 +21,6 @@ const userReplyComment = createAsyncThunk<
     const { boardId, boardReplyComment } = data;
     const { content, numIndex, commentId } = boardReplyComment;
 
-    const strId = boardId.toString();
-    console.log(strId);
     const auth = getAuth();
     const currentUser = auth.currentUser;
     const userId = currentUser?.uid;

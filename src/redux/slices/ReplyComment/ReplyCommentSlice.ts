@@ -30,13 +30,6 @@ const boardPageRepplyComment = createSlice({
       })
       .addCase(userReplyComment.fulfilled, (state, action) => {
         console.log(`비동기 reply댓글 요청 성공`);
-        const { boardId, boardReplyComment: pageComment } = action.payload;
-
-        const comment = state.boardReplyComment[boardId] || [];
-
-        const newComment = [...comment, pageComment];
-
-        state.boardReplyComment[boardId] = newComment;
       })
       .addCase(userReplyComment.rejected, (state, action) => {
         console.log(`비동기 reply댓글 실패`);
