@@ -213,11 +213,6 @@ const Page = () => {
 
         <div className="page_btn">
           {boardDatat.map((item) => {
-            console.log(item);
-            console.log("userId:", userId);
-            console.log("item.userUid:", item.userUid);
-            console.log("Match:", userId === item.userUid);
-
             return boardId === item.did && userId === item.userUid ? (
               <div key={item.did}>
                 <div className="edit_btn">
