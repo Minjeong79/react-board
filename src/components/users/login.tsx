@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { appAuth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../redux/slices/loginSlice";
+import { setUser,selectUser } from "../../redux/slices/loginSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -27,11 +27,10 @@ const Login = () => {
         password
       ); 
       const user = userCredential.user;
-      const uidMask = user.uid.slice(0,5);
-      const maskedPart = '*'.repeat(user.uid.length - 5);;
+      const uidMask = user.uid.slice(0,10);
+      const maskedPart = '*'.repeat(user.uid.length - 10);;
       const uid = uidMask + maskedPart;
 
-      console.log(uid);
       const userDb = {
         uid : uid,
         displayName:user.displayName,

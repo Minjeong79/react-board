@@ -8,7 +8,7 @@ import userPageLike from "../../redux/thunks/boardPageLikeThunks";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
-import { firebaseApp, firestore } from "../../firebase";
+import { firebaseApp, firestore, appAuth } from "../../firebase";
 import { collection, getDocs, getDoc, doc } from "firebase/firestore";
 import userPageLikeOverturn from "../../redux/thunks/boardPageLikeOverturnThunk";
 import Comment from "../comment/Comment";
@@ -27,8 +27,15 @@ interface Boardtype {
 const Page = () => {
   const userCollection = collection(firestore, "users");
 
+  const auth = appAuth;
+  const currentUser = auth.currentUser;
+  const userId = currentUser?.uid;
+
   const userUidValue = useSelector((state: any) => state.login.user);
-  const uidVar = userUidValue?.uid;
+  // const uidVar = userUidValue?.uid;
+
+  // console.log(uidVar);
+  console.log(userId);
 
   const { id } = useParams();
   const boardId = Number(id);
@@ -99,17 +106,17 @@ const Page = () => {
     }
 
     const subCollectionRef = collection(userDocRef, "like");
-    const userDoc = doc(subCollectionRef, uidVar);
+    const userDoc = doc(subCollectionRef, userId);
     const dataDoc = await getDoc(userDoc);
     const likedVar = (await dataDoc).data() as LikeType;
 
     const liked = {
       like: true,
-      userUid: uidVar as string,
+      userUid: userId as string,
     };
     const likedF = {
       like: false,
-      userUid: uidVar as string,
+      userUid: userId as string,
     };
 
     if (!likedVar || !likedVar.like) {
@@ -139,7 +146,7 @@ const Page = () => {
     handleBoardDataList();
 
     const storage = getStorage(firebaseApp);
-    const imageRef = ref(storage, `images/${uidVar}/${boardId}/`);
+    const imageRef = ref(storage, `images/${userId}/${boardId}/`);
 
     listAll(imageRef).then((response) => {
       response.items.forEach((item) => {
@@ -205,14 +212,21 @@ const Page = () => {
         </div>
 
         <div className="page_btn">
-          {boardDatat.find((item) => uidVar === item.userUid) && (
-            <div>
-              <div className="edit_btn">
-                <Link to={`/pagemodify/${boardId}`}>수정</Link>
+          {boardDatat.map((item) => {
+            console.log(item);
+            console.log("userId:", userId);
+            console.log("item.userUid:", item.userUid);
+            console.log("Match:", userId === item.userUid);
+
+            return boardId === item.did && userId === item.userUid ? (
+              <div key={item.did}>
+                <div className="edit_btn">
+                  <Link to={`/pagemodify/${boardId}`}>수정</Link>
+                </div>
+                <input type="button" onClick={handleDelete} value="삭제" />
               </div>
-              <input type="button" onClick={handleDelete} value="삭제" />
-            </div>
-          )}
+            ) : null;
+          })}
         </div>
         <Comment boardId={boardId} />
       </div>
