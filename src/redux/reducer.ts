@@ -23,5 +23,11 @@ const rootReducer = combineReducers({
   boardPageRepplyComment: boardPageReplyComment,
 });
 
+const rootReducerLogin = combineReducers({
+  login: loginReducer,
+});
+
+
 export type RootState = ReturnType<typeof rootReducer>;
+export type RootLoginState = ReturnType<typeof rootReducerLogin>;
 export default rootReducer;

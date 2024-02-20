@@ -7,6 +7,7 @@ import {
   doc,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { RootLoginState } from "../../reducer";
 
 interface CommentType {
   content: string;
@@ -28,7 +29,7 @@ const userComment = createAsyncThunk<
     const currentUser = auth.currentUser;
     const userId = currentUser?.uid;
 
-    const state: any = thunkAPI.getState();
+    const state: RootLoginState = thunkAPI.getState() as RootLoginState;
 
     const userInformation = state.login.user;
     const userNicName = userInformation.displayName;
@@ -47,7 +48,8 @@ const userComment = createAsyncThunk<
 
       //하위 컬렉션
       const lastCallectionRef = collection(docRef, "comment");
-
+console.log(boardId);
+console.log(numberId);
       if (boardId === numberId) {
         const dataComment = {
           content: content,

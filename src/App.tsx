@@ -21,7 +21,6 @@ function App() {
   const [init, setInit] = useState(false);
   //사용자의 로그인 상태 관리
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const userUidValue = useSelector((state: any) => state.login.user);
 
   useEffect(() => {
     //onAuthStateChanged 사용자의 로그인 상태가 변경될 때마다 호출
