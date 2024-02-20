@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { firestore } from "../../firebase";
 import { collection, doc, setDoc } from "firebase/firestore";
-import { customAlphabet } from "nanoid";
 import { getAuth } from "firebase/auth";
 
 export interface UserData {

@@ -2,12 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { firestore } from "../../../firebase";
 import { setDoc, collection, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-
-interface FirebaseUser {
-  uid:string;
-  email: string;
-  displayName: string;
-}
+import { RootLoginState } from "../../reducer";
 
 interface CommentType {
   content: string;
@@ -30,13 +25,12 @@ const userCommentModify = createAsyncThunk<
     const currentUser = auth.currentUser;
     const userId = currentUser?.uid;
 
-    const state:any = thunkAPI.getState();
-console.log(state);
-    const strId = data.boardId.toString();
-
+    const state: RootLoginState = thunkAPI.getState() as RootLoginState;
     const userInformation = state.login.user;
     const userNicName = userInformation.displayName;
-
+ 
+    const strId = data.boardId.toString();
+ 
     //컬렉션
     const userCollection = collection(firestore, "users");
     //도큐멘트

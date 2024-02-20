@@ -1,17 +1,23 @@
 import logo from "../../logo.png";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAuth, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
+import { appAuth } from "../../firebase";
 import { clearUser } from "../../redux/slices/loginSlice";
 import "../../scss/main.css";
 import "../../scss/style.css";
+import { RootLoginState } from "../../redux/reducer";
 const Header = () => {
-  const dispatch = useDispatch();
+  
 
-  const userUidValue = useSelector((state: any) => state.login.user);
-  const uidVar = userUidValue?.uid;
+  const userUidValue = useSelector((state:RootLoginState) => state.login.user);
   const userNicName = userUidValue?.displayName;
-  const auth = getAuth();
+
+  const auth = appAuth;
+  const currentUser = auth.currentUser;
+  const userId = currentUser?.uid;
+
+  const dispatch = useDispatch();
 
   const logout = () => {
     signOut(auth)
@@ -32,7 +38,7 @@ const Header = () => {
           </Link>
         </li>
 
-        {uidVar ? (
+        {userId ? (
           <li className=" ">
             <span>{userNicName} 님 </span>
             <button className="logout_btn" onClick={logout}>

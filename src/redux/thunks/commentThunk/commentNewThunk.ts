@@ -48,8 +48,7 @@ const userComment = createAsyncThunk<
 
       //하위 컬렉션
       const lastCallectionRef = collection(docRef, "comment");
-console.log(boardId);
-console.log(numberId);
+
       if (boardId === numberId) {
         const dataComment = {
           content: content,
@@ -61,6 +60,7 @@ console.log(numberId);
         };
 
         await setDoc(doc(lastCallectionRef, strIndex), dataComment);
+        break;
       } else {
         console.log("댓글 오류------------------");
       }
