@@ -3,6 +3,12 @@ import { firestore } from "../../../firebase";
 import { setDoc, collection, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
+interface FirebaseUser {
+  uid:string;
+  email: string;
+  displayName: string;
+}
+
 interface CommentType {
   content: string;
   strIndex: string;
@@ -24,8 +30,8 @@ const userCommentModify = createAsyncThunk<
     const currentUser = auth.currentUser;
     const userId = currentUser?.uid;
 
-    const state: any = thunkAPI.getState();
-
+    const state:any = thunkAPI.getState();
+console.log(state);
     const strId = data.boardId.toString();
 
     const userInformation = state.login.user;

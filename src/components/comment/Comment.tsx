@@ -143,7 +143,6 @@ const Comment = (props: CommentProps) => {
     replyData();
   }, [content, commentCount]);
 
-  console.log(commentData);
   return (
     <section className="comment_box">
       <form onSubmit={handleComment}>
