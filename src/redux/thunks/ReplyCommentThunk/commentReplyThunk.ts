@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { firestore } from "../../../firebase";
 import { setDoc, collection, getDocs, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { RootLoginState } from "../../reducer";
 
 interface ReplyType {
   content: string;
@@ -25,7 +26,7 @@ const userReplyComment = createAsyncThunk<
     const currentUser = auth.currentUser;
     const userId = currentUser?.uid;
 
-    const state: any = thunkAPI.getState();
+    const state: RootLoginState = thunkAPI.getState() as RootLoginState;
 
     const userInformation = state.login.user;
     const userNicName = userInformation.displayName;

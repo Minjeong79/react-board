@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import modifyUserData from "../../redux/thunks/boardModifyThunk";
-import { firebaseApp, firestore } from "../../firebase";
+import { firebaseApp, firestore,appAuth } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
+import { RootLoginState } from "../../redux/reducer";
 import {
   getStorage,
   ref,
@@ -27,9 +28,12 @@ interface Boardtype {
 const Modify = () => {
   const userCollection = collection(firestore, "users");
   //유저 정보
-  const userUidValue = useSelector((state: any) => state.login.user);
-  const userId = userUidValue?.uid;
-  const displayName = userUidValue?.displayName;
+  const userUidValue = useSelector((state:RootLoginState) => state.login.user);
+  const displayName = userUidValue.displayName;
+console.log(displayName);
+  const auth = appAuth;
+  const currentUser = auth.currentUser;
+  const userId = currentUser!.uid;
 
   const { id } = useParams();
   const boardId = Number(id);

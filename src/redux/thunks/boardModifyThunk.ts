@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
 import { firestore } from "../../firebase";
 import { collection, doc, updateDoc, getDocs } from "firebase/firestore";
 import { getAuth } from "firebase/auth";

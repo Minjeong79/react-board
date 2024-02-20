@@ -1,13 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { firestore } from "../../firebase";
-import {
-  addDoc,
-  setDoc,
-  collection,
-  getDocs,
-  getDoc,
-  doc,
-} from "firebase/firestore";
+import { setDoc, collection, getDoc, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 interface LikeType {

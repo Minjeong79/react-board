@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-
+import { useState, useEffect } from "react";
 import Form from "./components/users/Form";
 import Board from "./components/board/board";
 import Page from "./components/board/page";
@@ -9,7 +8,6 @@ import Modify from "./components/board/modifyForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { appAuth } from "./firebase";
 
-import { useSelector, useDispatch } from "react-redux";
 import CommentModifiy from "./components/comment/CommentModify";
 import ReplyComment from "./components/comment/ReplyComment";
 import Header from "./components/board/Header";
