@@ -8,6 +8,7 @@ import rootReducer from "./reducer";
 import { persistStore, persistReducer } from "redux-persist";
 //세션과 스토리지 둘중 스토리지 선택
 import storage from "redux-persist/lib/storage";
+import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 
 const persistConfig = {
   key: "root", //저장할 데이터 key
@@ -33,3 +34,8 @@ const store = configureStore({
 //다른 파일에서 가져와 사용할 수 있다
 export const persistor = persistStore(store);
 export default store;
+
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

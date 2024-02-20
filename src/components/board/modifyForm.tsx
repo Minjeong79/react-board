@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { useParams } from "react-router-dom";
 import modifyUserData from "../../redux/thunks/boardModifyThunk";
-import { firebaseApp, firestore,appAuth } from "../../firebase";
+import { firebaseApp, firestore, appAuth } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { RootLoginState } from "../../redux/reducer";
 import {
@@ -28,9 +29,9 @@ interface Boardtype {
 const Modify = () => {
   const userCollection = collection(firestore, "users");
   //유저 정보
-  const userUidValue = useSelector((state:RootLoginState) => state.login.user);
+  const userUidValue = useSelector((state: RootLoginState) => state.login.user);
   const displayName = userUidValue.displayName;
-console.log(displayName);
+
   const auth = appAuth;
   const currentUser = auth.currentUser;
   const userId = currentUser!.uid;
@@ -38,7 +39,7 @@ console.log(displayName);
   const { id } = useParams();
   const boardId = Number(id);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [importId, setImPortId] = useState(0);
@@ -111,7 +112,7 @@ console.log(displayName);
     });
 
     try {
-      const userData = {
+      const userData: Boardtype = {
         did: boardId,
         title: formValue.title,
         content: formValue.content,
