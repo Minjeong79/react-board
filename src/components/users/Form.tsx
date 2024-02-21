@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import addUserData from "../../redux/thunks/boardFormThunk";
 import { customAlphabet } from "nanoid";
 import {
@@ -11,13 +11,14 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { firebaseApp } from "../../firebase";
+import { RootLoginState } from "../../redux/reducer";
 
 const Form = () => {
-  const userUidValue = useSelector((state: any) => state.login.user);
+  const userUidValue = useAppSelector((state: RootLoginState) => state.login.user);
   const userId = userUidValue?.uid;
   const displayName = userUidValue?.displayName;
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const nanoid = customAlphabet("123456789", 6);
@@ -60,7 +61,7 @@ const Form = () => {
         addUserData({
           boardId: collectionId,
           boarditem: userData,
-        }) as any
+        }) 
       );
       setFormValue({
         ...formValue,

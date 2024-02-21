@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import userComment from "../../redux/thunks/commentThunk/commentNewThunk";
 import deleteComment from "../../redux/thunks/commentThunk/commentDeleteThunk";
 import { customAlphabet } from "nanoid";
@@ -39,7 +39,7 @@ const Comment = (props: CommentProps) => {
   const strId = boardId.toString();
   const nanoid = customAlphabet("0123456789", 9);
   const numid = nanoid();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [strIndex, setStrIndex] = useState("");
   const [content, setConent] = useState("");
@@ -70,7 +70,7 @@ const Comment = (props: CommentProps) => {
       userComment({
         boardId: boardId,
         boardComment: comment,
-      }) as any
+      })
     );
     setConent("");
   };
@@ -86,7 +86,7 @@ const Comment = (props: CommentProps) => {
           boardId: boardId,
           dataCUid: userId as string,
           strIndex: strIndexToDelete,
-        }) as any
+        })
       );
       dataListPage();
       replyData();
