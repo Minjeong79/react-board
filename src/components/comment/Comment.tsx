@@ -161,7 +161,7 @@ const Comment = (props: CommentProps) => {
         <div className="comment_user">
           <p>댓글 수 {commentCount}</p>
           <ul>
-            {commentData.map((item, index) => {
+            {commentData.sort().map((item, index) => {
               const propsDb = {
                 boardId: boardId,
                 strCommentIndex: item.strIndex,
@@ -196,7 +196,7 @@ const Comment = (props: CommentProps) => {
                           </Link>
                         ) : (
                           filteredReplyList.map((it, index) => (
-                            <div key={index}>
+                            <div key={index} className="content_reply">
                               <div>{it.content}</div>
                             </div>
                           ))
