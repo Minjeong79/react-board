@@ -361,6 +361,13 @@ button[type="submit"] {
             background: #fff;
             color: #3949ab;
           }
+          .content_reply {
+            display: flex;
+            flex: 1;
+            justify-content: start;
+            background: #f5f5f5;
+            padding: 10px;
+          }
         }
       }
     }
