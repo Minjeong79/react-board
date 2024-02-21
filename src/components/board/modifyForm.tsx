@@ -28,7 +28,9 @@ interface Boardtype {
 const Modify = () => {
   const userCollection = collection(firestore, "users");
   //유저 정보
-  const userUidValue = useAppSelector((state: RootLoginState) => state.login.user);
+  const userUidValue = useAppSelector(
+    (state: RootLoginState) => state.login.user
+  );
   const displayName = userUidValue.displayName;
 
   const auth = appAuth;
@@ -155,7 +157,16 @@ const Modify = () => {
       })
       .catch((error) => {});
   };
-
+  const handleOldImageDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const desertRef = ref(storage, oldimageNameUrl);
+    deleteObject(desertRef)
+      .then(() => {
+        setOldImageNameUrl("");
+        console.log("삭제 완료");
+      })
+      .catch((error) => {});
+  };
   const handleImageUpload = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (imageUpload === null) return;
@@ -176,7 +187,7 @@ const Modify = () => {
     handleBoardDataList();
 
     const storage = getStorage(firebaseApp);
-    const imageRef = ref(storage, `images/${userId}/${importId}/`);
+    const imageRef = ref(storage, `images/${importId}/`);
 
     listAll(imageRef).then((response) => {
       response.items.forEach((item) => {
@@ -189,9 +200,9 @@ const Modify = () => {
 
   return (
     <div className="container">
-      <header>
-        <h1>글 수정 페이지 </h1>
-      </header>
+      <div>
+        <h1>글 수정 페이지</h1>
+      </div>
       <form onSubmit={handleWrite}>
         {boardDatat.map((item, index) => (
           <div>
@@ -233,6 +244,9 @@ const Modify = () => {
 
                   <button onClick={handleImageUpload}>업로드</button>
                   <button onClick={handleImageDelete}>삭제</button>
+                  <button onClick={handleOldImageDelete}>
+                    기존 이미지 삭제
+                  </button>
                 </div>
               </div>
             ) : (
