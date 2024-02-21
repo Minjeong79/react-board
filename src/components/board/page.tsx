@@ -140,7 +140,7 @@ const Page = () => {
     handleBoardDataList();
 
     const storage = getStorage(firebaseApp);
-    const imageRef = ref(storage, `images/${userId}/${boardId}/`);
+    const imageRef = ref(storage, `images/${boardId}/`);
 
     listAll(imageRef).then((response) => {
       response.items.forEach((item) => {
