@@ -14,7 +14,9 @@ import { firebaseApp } from "../../firebase";
 import { RootLoginState } from "../../redux/reducer";
 
 const Form = () => {
-  const userUidValue = useAppSelector((state: RootLoginState) => state.login.user);
+  const userUidValue = useAppSelector(
+    (state: RootLoginState) => state.login.user
+  );
   const userId = userUidValue?.uid;
   const displayName = userUidValue?.displayName;
 
@@ -22,9 +24,11 @@ const Form = () => {
   const navigate = useNavigate();
 
   const nanoid = customAlphabet("123456789", 6);
-  const nanoid2 = customAlphabet("123456789", 5);
   const strId = nanoid();
-  const collectionId = Number(nanoid2());
+  const [collectionId] = useState(() => {
+    const nanoid2 = customAlphabet("123456789", 5);
+    return Number(nanoid2());
+  });
 
   const [formValue, setFormValue] = useState({
     title: "",
@@ -61,7 +65,7 @@ const Form = () => {
         addUserData({
           boardId: collectionId,
           boarditem: userData,
-        }) 
+        })
       );
       setFormValue({
         ...formValue,
@@ -107,9 +111,9 @@ const Form = () => {
   return (
     <div>
       <div className="container">
-        <header>
+        <div>
           <h1>글작성 </h1>
-        </header>
+        </div>
         <form onSubmit={handleWrite} name="form">
           <div className="input_box">
             <input

@@ -40,7 +40,11 @@ const Board = () => {
 
       return boardItem;
     });
-    setBoardData(newData);
+
+    const sortedData = newData.sort(
+      (a, b) => b.timedata.getTime() - a.timedata.getTime()
+    );
+    setBoardData(sortedData);
   };
 
   //날짜
@@ -53,7 +57,7 @@ const Board = () => {
     const itemList = getItemsForPage(currentPage);
   }, [boardDatat, currentPage]);
 
-  const itemsPerPage = 10; //데이터 출력 개수
+  const itemsPerPage = 6; //데이터 출력 개수
   const getItemsForPage = (page: number) => {
     const startIndex = (page - 1) * itemsPerPage; //보여줄 데이터 처음
     const endIndex = startIndex + itemsPerPage; //보여줄 데이터 마지막
@@ -77,7 +81,7 @@ const Board = () => {
     }
     return paginationNumberGroup;
   };
-
+  console.log();
   return (
     <>
       <div className="container">
