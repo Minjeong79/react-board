@@ -1,5 +1,5 @@
 import logo from "../../logo.png";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { appAuth } from "../../firebase";
@@ -10,14 +10,14 @@ import { RootLoginState } from "../../redux/reducer";
 const Header = () => {
   
 
-  const userUidValue = useSelector((state:RootLoginState) => state.login.user);
+  const userUidValue = useAppSelector((state:RootLoginState) => state.login.user);
   const userNicName = userUidValue?.displayName;
 
   const auth = appAuth;
   const currentUser = auth.currentUser;
   const userId = currentUser?.uid;
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const logout = () => {
     signOut(auth)

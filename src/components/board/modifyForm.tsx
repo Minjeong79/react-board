@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { useParams } from "react-router-dom";
 import modifyUserData from "../../redux/thunks/boardModifyThunk";
@@ -29,7 +28,7 @@ interface Boardtype {
 const Modify = () => {
   const userCollection = collection(firestore, "users");
   //유저 정보
-  const userUidValue = useSelector((state: RootLoginState) => state.login.user);
+  const userUidValue = useAppSelector((state: RootLoginState) => state.login.user);
   const displayName = userUidValue.displayName;
 
   const auth = appAuth;
@@ -126,7 +125,7 @@ const Modify = () => {
         modifyUserData({
           boardId: boardId,
           boarditem: userData,
-        }) as any
+        })
       );
 
       setFormValue({

@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { useLocation } from "react-router-dom";
 import userCommentModify from "../../redux/thunks/commentThunk/commentModifiyThunk";
 import { collection, doc, getDoc } from "firebase/firestore";
 import { firestore } from "../../firebase";
+import { RootLoginState } from "../../redux/reducer";
 interface CommentType {
   content: string;
   strIndex: string;
@@ -15,7 +16,7 @@ interface CommentType {
 }
 const CommentModifiy = () => {
   const userCollection = collection(firestore, "users");
-  const userInformation = useSelector((state: any) => state.login.user);
+  const userInformation = useAppSelector((state: RootLoginState) => state.login.user);
   const userNicName = userInformation?.displayName;
   const userCommentUid = userInformation?.uid;
 
@@ -25,7 +26,7 @@ const CommentModifiy = () => {
   const strId = boardId.toString();
   const statestrIndexId = state.strCommentIndex;
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [oldComment, setOldeComment] = useState<CommentType | undefined>(
@@ -59,7 +60,7 @@ const CommentModifiy = () => {
         userCommentModify({
           boardId: boardId,
           boardCommentModify: comment,
-        }) as any
+        })
       );
 
       navigate(`/page/${strId}`);

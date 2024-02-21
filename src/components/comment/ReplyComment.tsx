@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { useLocation } from "react-router-dom";
 import { customAlphabet } from "nanoid";
 import userReplyComment from "../../redux/thunks/ReplyCommentThunk/commentReplyThunk";
+import { RootLoginState } from "../../redux/reducer";
 const ReplyComment = () => {
-  const userInformation = useSelector((state: any) => state.login.user);
+  const userInformation = useAppSelector((state: RootLoginState) => state.login.user);
   const userNicName = userInformation.displayName;
   const userCommentUid = userInformation?.uid;
 
@@ -14,7 +15,7 @@ const ReplyComment = () => {
   const boardId = state.boardId;
   const statestrIndexId = state.strCommentIndex;
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const nanoid = customAlphabet("123456789", 6);
   const numid = nanoid();
@@ -37,7 +38,7 @@ const ReplyComment = () => {
       userReplyComment({
         boardId: statestrIndexId,
         boardReplyComment: comment,
-      }) as any
+      })
     );
     navigate(`/page/${boardId}`);
     setConent("");

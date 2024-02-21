@@ -2,11 +2,11 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { appAuth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setUser,selectUser } from "../../redux/slices/loginSlice";
+import { useAppDispatch, } from "../../redux/store";
+import { setUser } from "../../redux/slices/loginSlice";
 
 const Login = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   //로그인 이메일
   const [email, setEamil] = useState("");

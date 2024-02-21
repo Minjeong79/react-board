@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +35,7 @@ const Page = () => {
   const boardId = Number(id);
   const strId = boardId.toString();
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [boardDatat, setBoardData] = useState<Boardtype[]>([]);
@@ -49,7 +49,7 @@ const Page = () => {
       dispatch(
         deleteuserdata({
           boardId: boardId,
-        }) as any
+        })
       );
       //목록 페이지로 이동
       navigate("/");
@@ -119,7 +119,7 @@ const Page = () => {
         userPageLike({
           boardId: boardId,
           boardPage: liked,
-        }) as any
+        })
       );
       setLikeClick(true);
       setUnderDb(underDb + 1); // 좋아요 수 증가
@@ -129,7 +129,7 @@ const Page = () => {
         userPageLikeOverturn({
           boardId: boardId,
           boardPage: likedF,
-        }) as any
+        })
       );
       setLikeClick(false);
       setUnderDb(underDb - 1); // 좋아요 수 감소

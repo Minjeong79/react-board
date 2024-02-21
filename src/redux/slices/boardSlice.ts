@@ -1,9 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
+interface BoardType {
+  boards:number[];
+  selectedBoardId:number;
+}
 // 타입이 아닌 초깃값이 들어가야 함
-const initialState = {
+const initialState:BoardType = {
   boards: [],
-  selectedBoardId: null,
+  selectedBoardId: 0,
 };
 
 const boardSlice = createSlice({
@@ -11,18 +16,14 @@ const boardSlice = createSlice({
   initialState, //초기값
   reducers: {
     //reducer 함수
-    creatBoard: (state: any, action) => {
-      // 새로운 게시판을 추가하고 boardId 자동 생성하고 i
-      //ndex 번호를 id값으로 추가
-      const newBoard = { id: state.boards.length };
-      //상태의 boards에 값 추가
+    creatBoard: (state, action) => {
+      const newBoardId = state.boards.length;
+      const newBoard = [...state.boards]  
       state.boards = newBoard;
-      console.log(state.boards);
-      // 선택된 boardId 설정
-      state.selectedBoardId = newBoard.id;
+      state.selectedBoardId = newBoardId
     },
     //보드 선택 하기
-    selectBoard: (state: any, action) => {
+    selectBoard: (state, action) => {
       state.selectedBoardId = action.payload;
     },
     //보드 삭제
@@ -32,7 +33,7 @@ const boardSlice = createSlice({
       // 전달 받은 id값 삭제
       delete state.boards[boardId];
       //초기화
-      state.selectedBoardId = null;
+      state.selectedBoardId = 0;
     },
   },
 });
