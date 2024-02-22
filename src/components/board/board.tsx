@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { firestore } from "../../firebase";
+import { firestore, appAuth } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
-// import { creatBoard } from "../../redux/slices/boardSlice";
 import { Link } from "react-router-dom";
 
 interface Boardtype {
@@ -15,7 +13,10 @@ interface Boardtype {
   index: string;
 }
 const Board = () => {
-  const dispatch = useDispatch();
+  const auth = appAuth;
+  const currentUser = auth?.currentUser;
+  const userId = currentUser?.uid;
+
   const [boardDatat, setBoardData] = useState<Boardtype[]>([]);
 
   //페이지네이션
@@ -116,9 +117,10 @@ const Board = () => {
               ))}
             </ul>
           </div>
-          <div className="write_btn">
+          {userId ? ( <div className="write_btn">
             <Link to="/form">글쓰기</Link>
-          </div>
+          </div>):(<></>)}
+         
           <div className="pagenation_box">
             <div className="pagenation_list">
               <ul className="pagination">
