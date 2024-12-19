@@ -7,28 +7,34 @@ import { clearUser } from "../../redux/slices/loginSlice";
 import "../../scss/main.css";
 import "../../scss/style.css";
 import { RootLoginState } from "../../redux/reducer";
+import { useEffect, useState } from "react";
 const Header = () => {
-  
-
-  const userUidValue = useAppSelector((state:RootLoginState) => state.login.user);
+  const userUidValue = useAppSelector(
+    (state: RootLoginState) => state.login.user
+  );
   const userNicName = userUidValue?.displayName;
 
   const auth = appAuth;
   const currentUser = auth.currentUser;
   const userId = currentUser?.uid;
 
+  const [user, setUser] = useState("");
   const dispatch = useAppDispatch();
 
   const logout = () => {
     signOut(auth)
       .then(() => {
-        dispatch(clearUser(''));
+        dispatch(clearUser(""));
         console.log("로그아웃");
       })
       .catch((error) => {
         console.log("로그아웃 실패");
       });
   };
+
+  useEffect(() => {
+    setUser(userNicName);
+  }, [userNicName]);
   return (
     <header className="container">
       <ul className="">
@@ -38,9 +44,9 @@ const Header = () => {
           </Link>
         </li>
 
-        {userId ? (
+        {user ? (
           <li className=" ">
-            <span>{userNicName} 님 </span>
+            <span>{user} 님 </span>
             <button className="logout_btn" onClick={logout}>
               <span>로그아웃</span>
             </button>
